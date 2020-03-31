@@ -13,7 +13,7 @@ import { PipeLine, DataSource } from "./models/pipeLine";
 // 引入passportConfig的配置信息
 import * as passportConfig from "./config/passport";
 
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 
 // 创建express服务器对象
 const app = express();
@@ -21,7 +21,7 @@ const app = express();
 app.use(fileUpload());
 
 // 解决跨域问题
-app.all('*', function (req, res, next) {
+app.all("*", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
@@ -50,7 +50,6 @@ app.use(passport.session());
 //     // process.exit();
 // });
 
-
 // 用户模块路由
 //app.get("/user/login", userController.getLogin);
 
@@ -65,27 +64,54 @@ app.get("/pipeLineAnalysis/configFile", pipeLineAnalysisController.configFile);
 
 app.get("/pipeLineAnalysis/fileList", pipeLineAnalysisController.fileList);
 
-app.get("/pipeLineAnalysis/updateConfigFile", pipeLineAnalysisController.updateConfigFile);
+app.get(
+  "/pipeLineAnalysis/updateConfigFile",
+  pipeLineAnalysisController.updateConfigFile
+);
 //TODO:数据准备
-app.get("/pipeLineAnalysis/startServer", pipeLineAnalysisController.startServer);
+app.get(
+  "/pipeLineAnalysis/startServer",
+  pipeLineAnalysisController.startServer
+);
 
 //TODO:express后台配置
 // 返回连通图，前端显示，用于测试调试
-app.get("/pipeLineAnalysis/getConnectionGraph", pipeLineAnalysisController.getTestGraph);
+app.get(
+  "/pipeLineAnalysis/getConnectionGraph",
+  pipeLineAnalysisController.getTestGraph
+);
 
 // 管线分析模块路由
 // 净距分析接口
-app.get("/pipeLineAnalysis/distance", pipeLineAnalysisController.distanceAnalysis);
+app.get(
+  "/pipeLineAnalysis/distance",
+  pipeLineAnalysisController.distanceAnalysis
+);
 // 碰撞分析接口
-app.get("/pipeLineAnalysis/collision", pipeLineAnalysisController.collisionAnalysis);
+app.get(
+  "/pipeLineAnalysis/collision",
+  pipeLineAnalysisController.collisionAnalysis
+);
 // 横断面分析接口
-app.get("/pipeLineAnalysis/horizontalProfile", pipeLineAnalysisController.horizontalProfileAnalysis);
+app.get(
+  "/pipeLineAnalysis/horizontalProfile",
+  pipeLineAnalysisController.horizontalProfileAnalysis
+);
 // 纵断面分析，投影方法
-app.get("/pipeLineAnalysis/verticalProfile", pipeLineAnalysisController.verticalProfileAnalysis);
-// 测站区域分析：输入PLPT管点查询管点的上下游信息
-app.get("/pipeLineAnalysis/searchNodesByPLPT", pipeLineAnalysisController.searchNodesByPLPT);
-// 输入PLID管线查询管线的上下游信息
-app.get("/pipeLineAnalysis/searchNodesByPLID", pipeLineAnalysisController.searchNodesByPLID);
+app.get(
+  "/pipeLineAnalysis/verticalProfile",
+  pipeLineAnalysisController.verticalProfileAnalysis
+);
+// 测站区域分析-输入PLPT管点查询管点的上下游信息
+app.get(
+  "/pipeLineAnalysis/searchNodesByPLPT",
+  pipeLineAnalysisController.searchNodesByPLPT
+);
+// 输入PLID管线查询管线的上下游信息——爆管分析
+app.get(
+  "/pipeLineAnalysis/searchNodesByPLID",
+  pipeLineAnalysisController.searchNodesByPLID
+);
 // 输入两根管线的id值，返回最短路径——连通分析
 app.get("/pipeLineAnalysis/connected", pipeLineAnalysisController.connected);
 export default app;

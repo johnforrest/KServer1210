@@ -120,7 +120,7 @@ export class Graph {
 
   /**
    *
-   *深度优先搜索
+   *深度优先搜索-正向遍历
    * @param {string} start
    * @returns {*}
    * @memberof Graph
@@ -162,7 +162,7 @@ export class Graph {
 
         for (let i = 0; i < this._adjacencyMap[v].length; i++) {
           let w = this._adjacencyMap[v][i];
-          // 正向查找管綫
+          // 正向查找管线
           let edgeInfo = this._adjacencyMapEdgeInfo[v][w];
           if (edgeInfo !== undefined) {
             let PLID = edgeInfo.PLID;

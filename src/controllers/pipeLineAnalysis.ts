@@ -278,8 +278,14 @@ const startServer = (req: Request, res: Response) => {
   });
 };
 
-// 净距分析
-export const distanceAnalysis = (req: Request, res: Response) => {
+export /**
+ *
+ *净距分析
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const distanceAnalysis = (req: Request, res: Response) => {
   const query = req.query;
 
   // 管线所在数据源
@@ -332,8 +338,14 @@ export const distanceAnalysis = (req: Request, res: Response) => {
   return res.json(result);
 };
 
-// 碰撞分析
-export const collisionAnalysis = (req: Request, res: Response) => {
+export /**
+ *碰撞分析
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const collisionAnalysis = (req: Request, res: Response) => {
   const query = req.query;
 
   // 管线所在数据源
@@ -419,8 +431,14 @@ export const collisionAnalysis = (req: Request, res: Response) => {
   return res.json(result);
 };
 
-// 横断面分析
-export const horizontalProfileAnalysis = (req: Request, res: Response) => {
+export /**
+ *横断面分析
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const horizontalProfileAnalysis = (req: Request, res: Response) => {
   const query = req.query;
 
   // 三点构成一个平面
@@ -531,7 +549,14 @@ function IsInBox(
   );
 }
 
-// 查询线段与box的交点
+/**
+ *
+ *查询线段与box的交点
+ * @param {Cartesian3} p0
+ * @param {Cartesian3} p1
+ * @param {BoundingBox} box
+ * @returns {*}
+ */
 function FindIntersection(
   p0: Cartesian3,
   p1: Cartesian3,
@@ -548,7 +573,14 @@ function FindIntersection(
   return result;
 }
 
-export const verticalProfileAnalysis = (req: Request, res: Response) => {
+export /**
+ *纵断面分析
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const verticalProfileAnalysis = (req: Request, res: Response) => {
   // 输入参数
   const query = req.query;
 
@@ -699,8 +731,14 @@ export const verticalProfileAnalysis = (req: Request, res: Response) => {
   return res.json({ result, xlength });
 };
 
-// 输入PLPT管点查询管点的上下游信息
-export const searchNodesByPLPT = (req: Request, res: Response) => {
+export /**
+ *输入PLPT管点查询管点的上下游信息
+ *测站区域分析
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const searchNodesByPLPT = (req: Request, res: Response) => {
   const query = req.query;
 
   // 输入管点的PLPT编号进行查询
@@ -719,8 +757,14 @@ export const searchNodesByPLPT = (req: Request, res: Response) => {
   return res.json({ upstream, downstream });
 };
 
-// 输入PLID查询管线的上下游信息
-export const searchNodesByPLID = (req: Request, res: Response) => {
+export /**
+ *爆管分析
+ *输入PLID查询管线的上下游信息
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const searchNodesByPLID = (req: Request, res: Response) => {
   const query = req.query;
   const PLID = query.PIPELINE;
 
@@ -737,8 +781,14 @@ export const searchNodesByPLID = (req: Request, res: Response) => {
   return res.json({ upstream, downstream });
 };
 
-// 连通性分析，输入两个管线，返回两根管线之间的最短路径
-export const connected = (req: Request, res: Response) => {
+export /**
+ *
+ *连通性分析，输入两个管线，返回两根管线之间的最短路径
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const connected = (req: Request, res: Response) => {
   const query = req.query;
   const PLID0 = query.PIPELINE0;
   const PLID1 = query.PIPELINE1;
@@ -803,8 +853,14 @@ export const connected = (req: Request, res: Response) => {
   return res.json(result);
 };
 
-// 获取测试连通图
-export const getTestGraph = (req: Request, res: Response) => {
+export /**
+ *获取测试连通图
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const getTestGraph = (req: Request, res: Response) => {
   let testGraph = new Graph();
 
   testGraph.addVertex("0", 0);
