@@ -30,6 +30,7 @@ app.all('*', function (req, res, next) {
 
 // 配置服务器
 app.set("port", process.env.PORT || 10095);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // 配置静态资源路径
