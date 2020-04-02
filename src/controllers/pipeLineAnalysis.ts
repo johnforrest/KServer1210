@@ -740,7 +740,7 @@ export /**
  */
 const searchNodesByPLPT = (req: Request, res: Response) => {
   const query = req.query;
-
+  debugger;
   // 输入管点的PLPT编号进行查询
   const pipeLineNode = query.PIPENODE;
 

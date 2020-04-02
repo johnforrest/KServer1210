@@ -9,7 +9,7 @@
         //调试typescript代码
         // "sourceMap": false,
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "baseUrl": ".",
         "paths": {
             "*": [

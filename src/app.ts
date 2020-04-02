@@ -55,7 +55,7 @@ app.use(passport.session());
 
 // 3DTile数据发布模块路由
 // app.get("/3dTiles/scene", sceneController.getScene);
-debugger;
+// debugger;
 //TODO:vue前端配置
 //1.上传文件
 app.post("/pipeLineAnalysis/uploadFile", pipeLineAnalysisController.uploadFile);

@@ -132,6 +132,7 @@ export class Graph {
     let exploredNode: string[] = [];
     // 经过节点信息
     let exploredNodeInfo: any[] = [];
+
     // 经过的管线编号
     let exploredEdge: any[] = [];
     // 经过的管线信息
@@ -142,28 +143,35 @@ export class Graph {
     let endNodeInfo: any[] = [];
 
     while (queue.length != 0) {
+      //弹出节点信息
       let v = queue.pop();
 
       if (exploredNode.indexOf(v) !== -1) continue;
-
+      //存入经过的节点
       exploredNode.push(v);
 
       let info: any = {};
+      //把连通图中此节点的信息拷贝出来
       Object.assign(info, this._vertexInfo[v]);
+
       info.PLPTNO = v;
+      //存入经过的节点信息
       exploredNodeInfo.push(info);
 
-      // 没有孩子说明到达一个分支的末尾了
+      // 正向连通图
       if (this._adjacencyMap[v] != undefined) {
+        // TODO:第一种情况，没有孩子说明到达一个分支的末尾了,就存入终点的数组里面
         if (0 == this._adjacencyMap[v].length) {
           endNode.push(v);
           endNodeInfo.push(info);
         }
-
+        //TODO:第二种情况，有孩子节点说明还没有到达一个分支的末尾
         for (let i = 0; i < this._adjacencyMap[v].length; i++) {
           let w = this._adjacencyMap[v][i];
           // 正向查找管线
+          // 正向连通图中终点编号 => 管线信息;
           let edgeInfo = this._adjacencyMapEdgeInfo[v][w];
+          //放入到经过的边
           if (edgeInfo !== undefined) {
             let PLID = edgeInfo.PLID;
             if (exploredEdge.indexOf(PLID) == -1) {
@@ -174,6 +182,7 @@ export class Graph {
 
           if (exploredNode.indexOf(this._adjacencyMap[v][i]) == -1) {
             queue.push(this._adjacencyMap[v][i]);
+            console.log("进入队列了！");
           }
         }
       }

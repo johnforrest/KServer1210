@@ -15,7 +15,7 @@ Get http://localhost:10095/pipeLineAnalysis/horizontalProfile
 &POINT1[0]=-2399958.2658195393&POINT1[1]=5367313.75563679&POINT1[2]=2472470.9196066963
 &POINT2[0]=0.0&POINT2[1]=0.0&POINT2[2]=0.0
 
-###测试连接管点信息,输入管点PLPT
+###测试连接管点信息,输入管点PLPT，爆管分析
 Get http://localhost:10095/pipeLineAnalysis/searchNodesByPLPT
 ?PIPENODE=YS03320358_QXXZ1
 
@@ -32,7 +32,7 @@ Get http://localhost:10095/pipeLineAnalysis/verticalProfile
 ?POINT0[0]=-2401100.218089661&POINT0[1]=5365982.181927463&POINT0[2]=2472421.564441106
 &POINT1[0]=-2401090.2325399467&POINT1[1]=5366010.970612872&POINT1[2]=2473584.7178883716
 
-###内部测试
+###内部测试，爆管分析
 Get http://localhost:10095/pipeLineAnalysis/searchNodesByPLPT
 ?PIPENODE=PLPT_5
 
