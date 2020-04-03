@@ -164,6 +164,7 @@ export class Graph {
         if (0 == this._adjacencyMap[v].length) {
           endNode.push(v);
           endNodeInfo.push(info);
+          console.log("进入尾结点了！");
         }
         //TODO:第二种情况，有孩子节点说明还没有到达一个分支的末尾
         for (let i = 0; i < this._adjacencyMap[v].length; i++) {
