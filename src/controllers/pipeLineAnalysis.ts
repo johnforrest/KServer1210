@@ -25,30 +25,25 @@ let pipeGraph = new Graph();
 let pipeLinesInfo: any = {};
 
 // 读取管线数据源
-function openDataSources(url: string): any[] {
+function openDataSources(configPath: string): any[] {
   let result: any[] = [];
   let fileList: any[] = [];
+  //TODO:判断D:/config.json是否存在
+  fs.exists(configPath, function(exist) {
+    console.log(exist ? `${configPath}存在` : `${configPath}不存在`);
+  });
+  let configStr = fs.readFileSync(configPath).toString();
+  fileList = JSON.parse(configStr);
 
-  let configStr = fs.readFileSync(url).toString();
-  let configStrJson = JSON.parse(configStr);
-  let configPipeLine = configStrJson.pipeLine;
-  let dataPath = `${__dirname}/../data/`;
-  for (let i = 0; i < configPipeLine.length; ++i) {
-    let absPath = dataPath + configPipeLine[i].file;
-    fileList.push({
-      absPath,
-      batch: configPipeLine[i].batch
-    });
-  }
-
+  //最终只需要fileList这一个即可
   fileList.forEach(file => {
-    let absolutePath = file.absPath;
+    let absolutePath = file.jsonpath;
     let info = fs.statSync(absolutePath);
     let extension = path.parse(absolutePath).ext;
     if (info.isFile() && ".json" === extension) {
       let promise = new Promise((resolve, reject) => {
         let dataSource = new DataSource();
-        dataSource.readData(absolutePath, file.batch, dataSource => {
+        dataSource.readData(absolutePath, file.piBatch, dataSource => {
           // 构建空间索引
           dataSource.buildSpatialIndex();
           // 构建连通图
@@ -64,6 +59,43 @@ function openDataSources(url: string): any[] {
   });
 
   return result;
+
+  // let configStrJson = JSON.parse(configStr);
+  // let configPipeLine = configStrJson.pipeLine;
+  // let dataPath = `${__dirname}/../data/`;
+
+  // for (let i = 0; i < configPipeLine.length; ++i) {
+  //   let absPath = dataPath + configPipeLine[i].file;
+  //   fileList.push({
+  //     absPath,
+  //     batch: configPipeLine[i].batch
+  //   });
+  // }
+
+  // //最终只需要fileList这一个即可
+  // fileList.forEach(file => {
+  //   let absolutePath = file.absPath;
+  //   let info = fs.statSync(absolutePath);
+  //   let extension = path.parse(absolutePath).ext;
+  //   if (info.isFile() && ".json" === extension) {
+  //     let promise = new Promise((resolve, reject) => {
+  //       let dataSource = new DataSource();
+  //       dataSource.readData(absolutePath, file.batch, dataSource => {
+  //         // 构建空间索引
+  //         dataSource.buildSpatialIndex();
+  //         // 构建连通图
+  //         dataSource.buildConnectGraph();
+  //         pipeLine.addDataSource(dataSource);
+
+  //         resolve(dataSource);
+  //       });
+  //     });
+
+  //     result.push(promise);
+  //   }
+  // });
+
+  // return result;
 }
 
 /**
@@ -175,7 +207,7 @@ export /**
  * @returns
  */
 const uploadFile = (req: any, res: any) => {
-  debugger;
+  // debugger;
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
@@ -196,7 +228,7 @@ export /**
  * @param {Response} res
  */
 const fileList = (req: Request, res: Response) => {
-  debugger;
+  // debugger;
   let result: any = [];
   let url = `${__dirname}/../data/`;
   var fileList = fs.readdirSync(url);
@@ -221,7 +253,7 @@ export /**
  * @param {Response} res
  */
 const configFile = (req: Request, res: Response) => {
-  debugger;
+  // debugger;
 
   let congfigFilePath = `${__dirname}/../config.json`;
   let configString = fs.readFileSync(congfigFilePath).toString();
@@ -237,7 +269,7 @@ export /**
  * @param {Response} res
  */
 const updateConfigFile = (req: Request, res: Response) => {
-  debugger;
+  // debugger;
   const query = req.query;
   const data = query.data;
   let configArray: any = [];
@@ -266,7 +298,8 @@ const startServer = (req: Request, res: Response) => {
   pipeLinesInfo = {};
 
   // 重新读取json数据，构建管线数据结构
-  let congfigFilePath = `${__dirname}/../config.json`;
+  // let congfigFilePath = `${__dirname}/../config.json`;
+  let congfigFilePath = `D:/config.json`;
   let promises = openDataSources(congfigFilePath);
   Promise.all(promises).then(function(values) {
     // 构建连通图
@@ -740,7 +773,7 @@ export /**
  */
 const searchNodesByPLPT = (req: Request, res: Response) => {
   const query = req.query;
-  debugger;
+  // debugger;
   // 输入管点的PLPT编号进行查询
   const pipeLineNode = query.PIPENODE;
 

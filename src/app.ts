@@ -56,18 +56,21 @@ app.use(passport.session());
 // 3DTile数据发布模块路由
 // app.get("/3dTiles/scene", sceneController.getScene);
 // debugger;
-//TODO:vue前端配置
-//1.上传文件
-app.post("/pipeLineAnalysis/uploadFile", pipeLineAnalysisController.uploadFile);
 
-app.get("/pipeLineAnalysis/configFile", pipeLineAnalysisController.configFile);
+// TODO:YJW20200407注释;
+// //TODO:vue前端配置
+// //1.上传文件
+// app.post("/pipeLineAnalysis/uploadFile", pipeLineAnalysisController.uploadFile);
 
-app.get("/pipeLineAnalysis/fileList", pipeLineAnalysisController.fileList);
+// app.get("/pipeLineAnalysis/configFile", pipeLineAnalysisController.configFile);
 
-app.get(
-  "/pipeLineAnalysis/updateConfigFile",
-  pipeLineAnalysisController.updateConfigFile
-);
+// app.get("/pipeLineAnalysis/fileList", pipeLineAnalysisController.fileList);
+
+// app.get(
+//   "/pipeLineAnalysis/updateConfigFile",
+//   pipeLineAnalysisController.updateConfigFile
+// );
+
 //TODO:数据准备
 app.get(
   "/pipeLineAnalysis/startServer",
