@@ -29,21 +29,21 @@ function openDataSources(configPath: string): any[] {
   let result: any[] = [];
   let fileList: any[] = [];
   //TODO:判断D:/config.json是否存在
-  fs.exists(configPath, function(exist) {
+  fs.exists(configPath, function (exist) {
     console.log(exist ? `${configPath}存在` : `${configPath}不存在`);
   });
   let configStr = fs.readFileSync(configPath).toString();
   fileList = JSON.parse(configStr);
 
   //最终只需要fileList这一个即可
-  fileList.forEach(file => {
+  fileList.forEach((file) => {
     let absolutePath = file.jsonpath;
     let info = fs.statSync(absolutePath);
     let extension = path.parse(absolutePath).ext;
     if (info.isFile() && ".json" === extension) {
       let promise = new Promise((resolve, reject) => {
         let dataSource = new DataSource();
-        dataSource.readData(absolutePath, file.piBatch, dataSource => {
+        dataSource.readData(absolutePath, file.piBatch, (dataSource) => {
           // 构建空间索引
           dataSource.buildSpatialIndex();
           // 构建连通图
@@ -207,18 +207,14 @@ export /**
  * @returns
  */
 const uploadFile = (req: any, res: any) => {
-<<<<<<< HEAD
   // debugger;
-=======
-//   debugger;
->>>>>>> origin/master
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
 
   let file = req.files.file;
 
-  file.mv(`${__dirname}/../data/${file.name}`, function(err: any) {
+  file.mv(`${__dirname}/../data/${file.name}`, function (err: any) {
     if (err) return res.status(500).send(err);
 
     res.send("File uploaded!");
@@ -232,11 +228,7 @@ export /**
  * @param {Response} res
  */
 const fileList = (req: Request, res: Response) => {
-<<<<<<< HEAD
   // debugger;
-=======
-//   debugger;
->>>>>>> origin/master
   let result: any = [];
   let url = `${__dirname}/../data/`;
   var fileList = fs.readdirSync(url);
@@ -261,11 +253,7 @@ export /**
  * @param {Response} res
  */
 const configFile = (req: Request, res: Response) => {
-<<<<<<< HEAD
   // debugger;
-=======
-//   debugger;
->>>>>>> origin/master
 
   let congfigFilePath = `${__dirname}/../config.json`;
   let configString = fs.readFileSync(congfigFilePath).toString();
@@ -281,11 +269,7 @@ export /**
  * @param {Response} res
  */
 const updateConfigFile = (req: Request, res: Response) => {
-<<<<<<< HEAD
   // debugger;
-=======
-//   debugger;
->>>>>>> origin/master
   const query = req.query;
   const data = query.data;
   let configArray: any = [];
@@ -317,12 +301,12 @@ const startServer = (req: Request, res: Response) => {
   // let congfigFilePath = `${__dirname}/../config.json`;
   let congfigFilePath = `D:/config.json`;
   let promises = openDataSources(congfigFilePath);
-  Promise.all(promises).then(function(values) {
+  Promise.all(promises).then(function (values) {
     // 构建连通图
     buildConnectGraphs(values);
 
     res.json({
-      state: "OK"
+      state: "OK",
     });
   });
 };
@@ -469,7 +453,7 @@ const collisionAnalysis = (req: Request, res: Response) => {
             sqrDistance: obj.sqrDistance,
             closets: obj.closets,
             edge0: edge0,
-            edge1: edge1
+            edge1: edge1,
           };
           result[edge0.SmID].push(o);
         }
@@ -525,7 +509,7 @@ const horizontalProfileAnalysis = (req: Request, res: Response) => {
   );
 
   let result = {
-    intersection: new Array()
+    intersection: new Array(),
   };
   const dataSources = pipeLine.getAllDataSources();
   for (const dataSourceName in dataSources) {
@@ -568,7 +552,7 @@ const horizontalProfileAnalysis = (req: Request, res: Response) => {
             // 将交点及管线信息返回到结果数组中
             let o = {
               position: intersectionPoint,
-              edge: edge
+              edge: edge,
             };
             result.intersection.push(o);
           }
@@ -719,7 +703,7 @@ const verticalProfileAnalysis = (req: Request, res: Response) => {
           ) {
             pipeLineInProfileInfo.positionInProfile = [
               p0InBoxCoords,
-              p1InBoxCoords
+              p1InBoxCoords,
             ];
 
             // 查询管点信息
@@ -789,11 +773,7 @@ export /**
  */
 const searchNodesByPLPT = (req: Request, res: Response) => {
   const query = req.query;
-<<<<<<< HEAD
   // debugger;
-=======
-//   debugger;
->>>>>>> origin/master
   // 输入管点的PLPT编号进行查询
   const pipeLineNode = query.PIPENODE;
 

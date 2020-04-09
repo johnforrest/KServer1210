@@ -164,7 +164,7 @@ export class Graph {
         if (0 == this._adjacencyMap[v].length) {
           endNode.push(v);
           endNodeInfo.push(info);
-          console.log("进入尾结点了！");
+          console.log("进入尾结点了！", endNode.pop);
         }
         //TODO:第二种情况，有孩子节点说明还没有到达一个分支的末尾
         for (let i = 0; i < this._adjacencyMap[v].length; i++) {
@@ -183,7 +183,7 @@ export class Graph {
 
           if (exploredNode.indexOf(this._adjacencyMap[v][i]) == -1) {
             queue.push(this._adjacencyMap[v][i]);
-            console.log("进入队列了！");
+            console.log("进入队列了！", queue.pop());
           }
         }
       }
@@ -195,7 +195,7 @@ export class Graph {
       exploredEdge,
       exploredEdgeInfo,
       endNode,
-      endNodeInfo
+      endNodeInfo,
     };
   }
 
@@ -266,7 +266,7 @@ export class Graph {
       exploredEdge,
       exploredEdgeInfo,
       endNode,
-      endNodeInfo
+      endNodeInfo,
     };
   }
 

@@ -41,3 +41,7 @@ Get http://localhost:10095/pipeLineAnalysis/getConnectionGraph
 
 ###
 GET http://localhost:10095/pipeLineAnalysis/startServer
+
+
+###
+http://127.0.0.1:10095/pipeLineAnalysis/searchNodesByPLPT?PIPENODE=40YS10538
