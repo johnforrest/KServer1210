@@ -207,7 +207,11 @@ export /**
  * @returns
  */
 const uploadFile = (req: any, res: any) => {
+<<<<<<< HEAD
   // debugger;
+=======
+//   debugger;
+>>>>>>> origin/master
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
@@ -228,7 +232,11 @@ export /**
  * @param {Response} res
  */
 const fileList = (req: Request, res: Response) => {
+<<<<<<< HEAD
   // debugger;
+=======
+//   debugger;
+>>>>>>> origin/master
   let result: any = [];
   let url = `${__dirname}/../data/`;
   var fileList = fs.readdirSync(url);
@@ -253,7 +261,11 @@ export /**
  * @param {Response} res
  */
 const configFile = (req: Request, res: Response) => {
+<<<<<<< HEAD
   // debugger;
+=======
+//   debugger;
+>>>>>>> origin/master
 
   let congfigFilePath = `${__dirname}/../config.json`;
   let configString = fs.readFileSync(congfigFilePath).toString();
@@ -269,7 +281,11 @@ export /**
  * @param {Response} res
  */
 const updateConfigFile = (req: Request, res: Response) => {
+<<<<<<< HEAD
   // debugger;
+=======
+//   debugger;
+>>>>>>> origin/master
   const query = req.query;
   const data = query.data;
   let configArray: any = [];
@@ -773,7 +789,11 @@ export /**
  */
 const searchNodesByPLPT = (req: Request, res: Response) => {
   const query = req.query;
+<<<<<<< HEAD
   // debugger;
+=======
+//   debugger;
+>>>>>>> origin/master
   // 输入管点的PLPT编号进行查询
   const pipeLineNode = query.PIPENODE;
 
