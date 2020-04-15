@@ -789,7 +789,39 @@ const searchNodesByPLPT = (req: Request, res: Response) => {
 
   return res.json({ upstream, downstream });
 };
-
+export /**
+ *输入PLPT管点查询管点的上下游信息
+ *测站区域分析
+ * @param {Request} req
+ * @param {Response} res
+ * @returns
+ */
+const searchNodesByPLPTPost = (req: Request, res: Response) => {
+  // console.log(req.body.PIPENODE);
+  // const query = req.query;
+  // debugger;
+  // 输入管点的PLPT编号进行查询
+  // const pipeLineNode = query.PIPENODE;
+  //判断是否是是数组
+  if (req.body.PIPENODE instanceof Array) {
+    if (req.body.PIPENODE.length == 0) {
+      return null;
+    }
+    let resultArr: Array<object> = new Array<object>();
+    for (let index = 0; index < req.body.PIPENODE.length; index++) {
+      const pipeLineNode = req.body.PIPENODE[index];
+      // 正向查询获取下游信息
+      let downstream = pipeGraph.dfs(pipeLineNode);
+      // 逆向查询获取上游信息
+      let upstream = pipeGraph.dfsInv(pipeLineNode);
+      resultArr.push({
+        upstream,
+        downstream,
+      });
+    }
+    return res.json(resultArr);
+  }
+};
 export /**
  *爆管分析
  *输入PLID查询管线的上下游信息

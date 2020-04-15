@@ -21,7 +21,7 @@ const app = express();
 app.use(fileUpload());
 
 // 解决跨域问题
-app.all("*", function(req, res, next) {
+app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
@@ -109,6 +109,11 @@ app.get(
 app.get(
   "/pipeLineAnalysis/searchNodesByPLPT",
   pipeLineAnalysisController.searchNodesByPLPT
+);
+// 测站区域分析-输入PLPT管点查询管点的上下游信息
+app.post(
+  "/pipeLineAnalysis/searchNodesByPLPTPost",
+  pipeLineAnalysisController.searchNodesByPLPTPost
 );
 // 输入PLID管线查询管线的上下游信息——爆管分析
 app.get(
