@@ -17,7 +17,7 @@ const fileUpload = require("express-fileupload");
 
 // 创建express服务器对象
 const app = express();
-
+const router = express.Router();
 app.use(fileUpload());
 
 // 解决跨域问题
