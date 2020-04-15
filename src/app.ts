@@ -42,12 +42,6 @@ app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );
 
-app.use(function (req, res) {
-  res.setHeader("Content-Type", "text/plain");
-  res.write("you posted:\n");
-  res.end(JSON.stringify(req.body, null, 2));
-});
-
 app.use(passport.initialize());
 app.use(passport.session());
 
