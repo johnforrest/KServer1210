@@ -115,6 +115,16 @@ app.post(
   "/pipeLineAnalysis/searchNodesByPLPTPost",
   pipeLineAnalysisController.searchNodesByPLPTPost
 );
+// 测站区域分析-输入PLPT管点查询管点的上下游信息
+app.post(
+  "/pipeLineAnalysis/searchNodesByPLPTPostUp",
+  pipeLineAnalysisController.searchNodesByPLPTPostUp
+);
+// 测站区域分析-输入PLPT管点查询管点的上下游信息
+app.post(
+  "/pipeLineAnalysis/searchNodesByPLPTPostDown",
+  pipeLineAnalysisController.searchNodesByPLPTPostDown
+);
 // 输入PLID管线查询管线的上下游信息——爆管分析
 app.get(
   "/pipeLineAnalysis/searchNodesByPLID",
