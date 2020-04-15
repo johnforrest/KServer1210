@@ -45,3 +45,15 @@ GET http://localhost:9081/pipeLineAnalysis/startServer
 
 ###
 http://127.0.0.1:9081/pipeLineAnalysis/searchNodesByPLPT?PIPENODE=40YS10538
+
+###
+POST http://localhost:9081/pipeLineAnalysis/searchNodesByPLPTPostUp HTTP/1.1
+header name: header value
+
+content
+{
+    "PIPENODE": [
+        "40YS18355",
+        "40YS19844"
+    ]
+}

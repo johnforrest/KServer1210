@@ -32,11 +32,22 @@ app.all("*", function (req, res, next) {
 app.set("port", process.env.PORT || 9081);
 
 app.use(bodyParser.json());
+
+// parse application/x-www-form-urlencoded
+
+// 返回的对象是一个键值对，当extended为false的时候，键值对中的值就为'String'或'Array'形式，为true的时候，则可为任何数据类型。
 app.use(bodyParser.urlencoded({ extended: true }));
 // 配置静态资源路径
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );
+
+app.use(function (req, res) {
+  res.setHeader("Content-Type", "text/plain");
+  res.write("you posted:\n");
+  res.end(JSON.stringify(req.body, null, 2));
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
