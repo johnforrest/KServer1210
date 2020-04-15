@@ -797,26 +797,23 @@ export /**
  * @returns
  */
 const searchNodesByPLPTPost = (req: Request, res: Response) => {
-  // console.log(req.body.PIPENODE);
-  // const query = req.query;
-  // debugger;
-  // 输入管点的PLPT编号进行查询
-  // const pipeLineNode = query.PIPENODE;
-  //判断是否是是数组
-  if (req.body.PIPENODE instanceof Array) {
-    if (req.body.PIPENODE.length == 0) {
+   //判断是否是是数组
+   if (req.body.PIPENODE != null) {
+    let pipeNode = req.body.PIPENODE.toString();
+    let array = pipeNode.split(",");
+    let resultArr: Array<object> = new Array<object>();
+    if (array.length == 0) {
       return null;
     }
-    let resultArr: Array<object> = new Array<object>();
-    for (let index = 0; index < req.body.PIPENODE.length; index++) {
-      const pipeLineNode = req.body.PIPENODE[index];
+    for (let index = 0; index < array.length; index++) {
+      const pipeLineNode = array[index];
       // 正向查询获取下游信息
       let downstream = pipeGraph.dfs(pipeLineNode);
       // 逆向查询获取上游信息
       let upstream = pipeGraph.dfsInv(pipeLineNode);
       resultArr.push({
         upstream,
-        downstream,
+        downstream
       });
     }
     return res.json(resultArr);
@@ -830,25 +827,22 @@ export /**
  * @returns
  */
 const searchNodesByPLPTPostUp = (req: Request, res: Response) => {
-  // console.log(req.body.PIPENODE);
-  // const query = req.query;
-  // debugger;
-  // 输入管点的PLPT编号进行查询
-  // const pipeLineNode = query.PIPENODE;
   //判断是否是是数组
-  if (req.body.PIPENODE instanceof Array) {
-    if (req.body.PIPENODE.length == 0) {
+  if (req.body.PIPENODE != null) {
+    let pipeNode = req.body.PIPENODE.toString();
+    let array = pipeNode.split(",");
+    let resultArr: Array<object> = new Array<object>();
+    if (array.length == 0) {
       return null;
     }
-    let resultArr: Array<object> = new Array<object>();
-    for (let index = 0; index < req.body.PIPENODE.length; index++) {
-      const pipeLineNode = req.body.PIPENODE[index];
+    for (let index = 0; index < array.length; index++) {
+      const pipeLineNode = array[index];
       // 正向查询获取下游信息
       // let downstream = pipeGraph.dfs(pipeLineNode);
       // 逆向查询获取上游信息
       let upstream = pipeGraph.dfsInv(pipeLineNode);
       resultArr.push({
-        upstream,
+        upstream
       });
     }
     return res.json(resultArr);
@@ -862,25 +856,22 @@ export /**
  * @returns
  */
 const searchNodesByPLPTPostDown = (req: Request, res: Response) => {
-  // console.log(req.body.PIPENODE);
-  // const query = req.query;
-  // debugger;
-  // 输入管点的PLPT编号进行查询
-  // const pipeLineNode = query.PIPENODE;
-  //判断是否是是数组
-  if (req.body.PIPENODE instanceof Array) {
-    if (req.body.PIPENODE.length == 0) {
+   //判断是否是是数组
+   if (req.body.PIPENODE != null) {
+    let pipeNode = req.body.PIPENODE.toString();
+    let array = pipeNode.split(",");
+    let resultArr: Array<object> = new Array<object>();
+    if (array.length == 0) {
       return null;
     }
-    let resultArr: Array<object> = new Array<object>();
-    for (let index = 0; index < req.body.PIPENODE.length; index++) {
-      const pipeLineNode = req.body.PIPENODE[index];
+    for (let index = 0; index < array.length; index++) {
+      const pipeLineNode = array[index];
       // 正向查询获取下游信息
       let downstream = pipeGraph.dfs(pipeLineNode);
       // 逆向查询获取上游信息
-      // let upstream = pipeGraph.dfsInv(pipeLineNode);
+    //   let upstream = pipeGraph.dfsInv(pipeLineNode);
       resultArr.push({
-        downstream,
+        downstream
       });
     }
     return res.json(resultArr);
