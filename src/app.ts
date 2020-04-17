@@ -1,9 +1,10 @@
 // 引入express库
 import express from "express";
 import bodyParser from "body-parser";
+
 import path from "path";
 import passport from "passport";
-
+const multer = require("multer");
 // 引入controller对象
 import * as userController from "./controllers/user";
 import * as pipeLineAnalysisController from "./controllers/pipeLineAnalysis";
@@ -17,7 +18,7 @@ const fileUpload = require("express-fileupload");
 
 // 创建express服务器对象
 const app = express();
-const router = express.Router();
+// const router = express.Router();
 app.use(fileUpload());
 
 // 解决跨域问题
@@ -25,9 +26,15 @@ app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  next();
+  if (req.method == 'OPTIONS') {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+//   next();
 });
-
+const router = express.Router();
 // 配置服务器
 app.set("port", process.env.PORT || 9081);
 
